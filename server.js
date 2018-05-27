@@ -55,8 +55,8 @@ app.post("/signup", function (req, res) {
                 console.log('Account ' + req.body.accountid + " create success");
                 res.send('Account ' + req.body.accountid + " create success");
             } else {
-                console.log("account create fail: accountID or email may already exist");
-                res.send("account create fail: accountID or email may already exist");
+                console.log("Account create fail: accountID or email may already exist");
+                res.send("Account create fail: accountID or email may already exist");
             }
             client.close();
         })

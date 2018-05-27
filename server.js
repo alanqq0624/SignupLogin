@@ -16,6 +16,21 @@ app.listen(port_express, function () {
     console.log('Example app listening on port ' + port_express + ' !');
 });
 
+//morgan
+var logger = require('morgan');  
+app.use(logger('dev'));     //打印到控制枱  
+
+//session
+var session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+app.use(session({
+    secret: 'random 128 byte string',
+    store:new MongoStore({url: 'mongodb://localhost:27017/sessiondb'}),
+    resave: false,
+    saveUninitialized: true,
+    cookie: {maxAge: 10*60*1000}
+}));
+
 //MongoDB
 //URL, may change due to different server
 const db_url = 'mongodb://localhost:27017';

@@ -3,14 +3,28 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Login/title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <title>KIMOCHI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
 </head>
 
 <body>
-    <h1>Login</h1>
-    <form></form>
+    <h1>KIMOCHI</h1>
+    <h2>Login</h2>
+    <form id="login">
+        <p>Account ID:
+            <input type="text" id="accountid">
+        </p>
+        <br>
+        <p>Password:
+            <input type="password" id="password">
+        </p>
+        <br>
+        <button id="submit">Login</button>
+    </form>
+    <script src="login.js"></script>
 </body>
 
 </html>

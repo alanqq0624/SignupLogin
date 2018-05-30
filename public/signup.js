@@ -4,7 +4,7 @@ $(document).ready(function () {
             event.preventDefault(); //取消reload
             $.ajax({
                 method: "post",
-                url: "./signup",
+                url: "./signup_submit",
                 data: {
                     accountid: $("#signup input[id=accountid]").val(),
                     password: md5($("#signup input[id=password]").val()),

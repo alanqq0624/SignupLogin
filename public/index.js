@@ -1,5 +1,6 @@
-//check if user is login
+//Save Current Status like is isLogin and accountID which user login
 var CurrentStatus;
+//check if user is login
 var check = new Promise(function (resolve, reject) {
     $.ajax({
         method: "post",
@@ -17,27 +18,34 @@ check.then(function (isLogin) {
     if (isLogin) {
         $("#login").hide();
         $("#signup").hide();
+        $("#logout").show();
         $("#status").text("Welcome " + CurrentStatus.accountid);
-    } else {
-        $(document).ready(async function () {
-            $("#login").click(function (event) {
-                event.preventDefault(); //取消reload
-                if (isLogin) {
-                    alert("You had already login");
-                } else {
-                    console.log("go to login");
-                    document.location.href = "./login.html";
-                }
-            })
-            $("#signup").click(function (event) {
-                event.preventDefault(); //取消reload
-                if (isLogin) {
-                    alert("You had already login");
-                } else {
-                    console.log("go to sign up");
-                    document.location.href = "./signup.html";
-                }
-            })
-        })
     }
+})
+$(document).ready(function () {
+    $("#login").click(function (event) {
+        event.preventDefault(); //取消reload
+        console.log("go to login");
+        document.location.href = "./login.html";
+    })
+    $("#signup").click(function (event) {
+        event.preventDefault(); //取消reload
+        console.log("go to sign up");
+        document.location.href = "./signup.html";
+    })
+    $("#logout").click(function (event) {
+        event.preventDefault(); //取消reload
+        console.log("Log out");
+        $.ajax({
+            method: "post",
+            url: "./logout",
+            success: function (receive) {
+                $("#login").show();
+                $("#signup").show();
+                $("#logout").hide();
+                $("#status").text("Bye " + CurrentStatus.accountid);
+                CurrentStatus = null;
+            }
+        })
+    })
 })

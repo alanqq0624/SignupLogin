@@ -49,11 +49,16 @@ MongoClient.connect(db_url, function (err, client) {
 app.post("/index_redirect", function (req, res) {
     if (req.session.isLogin) {
         console.log("Had login\n")
-        res.send(true);
-
+        res.json({
+            isLogin: true,
+            accountid: req.session.accountid
+        });
     } else {
         console.log("Had not login\n")
-        res.send(false);
+        res.json({
+            isLogin: false,
+            accountid: null
+        });
     }
 })
 
@@ -106,6 +111,7 @@ app.post("/login_submit", function (req, res) {
                 if (err) throw err;
                 if (find) {
                     req.session.isLogin = true;
+                    req.session.accountid = find.accountid;
                     console.log(find);
                     console.log("Login Success: Welcome " + find.accountid + "\n");
                     res.json({
